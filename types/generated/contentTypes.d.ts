@@ -430,6 +430,138 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiArticuloArticulo extends Struct.CollectionTypeSchema {
+  collectionName: 'articulos';
+  info: {
+    displayName: 'articulo';
+    pluralName: 'articulos';
+    singularName: 'articulo';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    contenido: Schema.Attribute.Blocks;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    fecha_publicacion: Schema.Attribute.Date;
+    imagen_principal: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    imagen_seccion: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::articulo.articulo'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    resumen: Schema.Attribute.Blocks;
+    slug: Schema.Attribute.UID<'titulo'>;
+    titulo: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiCineCine extends Struct.CollectionTypeSchema {
+  collectionName: 'cines';
+  info: {
+    displayName: 'cine';
+    pluralName: 'cines';
+    singularName: 'cine';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    autor: Schema.Attribute.String;
+    contenido: Schema.Attribute.Blocks;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    fecha_publicacion: Schema.Attribute.Date;
+    galeria: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    imagen_principal: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::cine.cine'> &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    resumen: Schema.Attribute.Blocks;
+    slug: Schema.Attribute.UID<'titulo'>;
+    titulo: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiHomeHome extends Struct.SingleTypeSchema {
+  collectionName: 'homes';
+  info: {
+    displayName: 'home';
+    pluralName: 'homes';
+    singularName: 'home';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::home.home'> &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    slider: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    subtitle: Schema.Attribute.Text;
+    title: Schema.Attribute.Text;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiNavmenuNavmenu extends Struct.CollectionTypeSchema {
+  collectionName: 'navmenus';
+  info: {
+    displayName: 'navmenu';
+    pluralName: 'navmenus';
+    singularName: 'navmenu';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    label: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::navmenu.navmenu'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    url: Schema.Attribute.String;
+  };
+}
+
 export interface PluginContentReleasesRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
@@ -940,6 +1072,10 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::articulo.articulo': ApiArticuloArticulo;
+      'api::cine.cine': ApiCineCine;
+      'api::home.home': ApiHomeHome;
+      'api::navmenu.navmenu': ApiNavmenuNavmenu;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
