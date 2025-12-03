@@ -27,7 +27,7 @@
     "categoria": {
       "type": "enumeration",
       "enum": [
-        "\"Música\", \"Cine\", \"Arte\", \"Literatura\""
+        "\"Música\""
       ]
     },
     "resumen": {
