@@ -430,34 +430,6 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiAboutAbout extends Struct.SingleTypeSchema {
-  collectionName: 'abouts';
-  info: {
-    displayName: 'about';
-    pluralName: 'abouts';
-    singularName: 'about';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    content: Schema.Attribute.Blocks;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::about.about'> &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    slider: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    subtitle: Schema.Attribute.String;
-    title: Schema.Attribute.String;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
 export interface ApiCineCine extends Struct.CollectionTypeSchema {
   collectionName: 'cines';
   info: {
@@ -640,33 +612,6 @@ export interface ApiNoticiaNoticia extends Struct.CollectionTypeSchema {
     resumen: Schema.Attribute.Text;
     slug: Schema.Attribute.UID<'Titulo'>;
     Titulo: Schema.Attribute.String;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiTeamTeam extends Struct.CollectionTypeSchema {
-  collectionName: 'teams';
-  info: {
-    displayName: 'Team';
-    pluralName: 'teams';
-    singularName: 'team';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::team.team'> &
-      Schema.Attribute.Private;
-    name: Schema.Attribute.String;
-    photo: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    publishedAt: Schema.Attribute.DateTime;
-    role: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1183,14 +1128,12 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
-      'api::about.about': ApiAboutAbout;
       'api::cine.cine': ApiCineCine;
       'api::contact.contact': ApiContactContact;
       'api::home.home': ApiHomeHome;
       'api::musica.musica': ApiMusicaMusica;
       'api::navmenu.navmenu': ApiNavmenuNavmenu;
       'api::noticia.noticia': ApiNoticiaNoticia;
-      'api::team.team': ApiTeamTeam;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
