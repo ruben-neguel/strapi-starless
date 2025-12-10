@@ -59,6 +59,7 @@ El panel de administración estará disponible en:
 # 📁 **Estructura del Proyecto**
 
 strapi-starless-main/
+
 ├── config/             # Configuración de Strapi
 ├── database/           # Archivos de base de datos (dev)
 ├── public/             # Archivos públicos y uploads
